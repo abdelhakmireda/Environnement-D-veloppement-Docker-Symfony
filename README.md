@@ -31,8 +31,8 @@ docker-compose up -d
 ### 4. Configuration du partage de fichiers Docker Desktop
 Lorsque Docker Desktop demande l'accès à des chemins de dossier, acceptez les requêtes suivantes :
 
- Docker veut accéder au chemin de dossier créer \environemee...\php\vhost : Répondez yes
- Docker veut accéder au chemin de dossier créer \environemee... : Répondez yes
+ Docker veut accéder au chemin de dossier créer \Environnement-D-veloppement-Docker-Symfony\php\vhost : Répondez yes <br>
+ Docker veut accéder au chemin de dossier créer \Environnement-D-veloppement-Docker-Symfony: Répondez yes
  
  ### 5. Vérification des conteneurs Docker
  Vérifiez que les conteneurs sont correctement démarrés avec les statuts suivants :
