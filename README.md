@@ -77,6 +77,7 @@ DATABASE_URL="mysql://symfony:symfony@db:3306/abdelhakmireda"
  ```
 Pour créer la base de données, accédez au conteneur Symfony et exécutez :
  ```bash
+docker exec -it docker_www bash
 cd myproject
 bin/console doctrine:database:create
  ```
