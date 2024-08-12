@@ -1,4 +1,4 @@
-# Installation et Configuration de Docker pour Symfony (apache / mysql8.0 / php8.1 /Symfony CLi /PhpMyadmin /Symfony 6.4.* )
+# Installation et Configuration de Docker pour Symfony (Apache /Mysql 8.0 /Php8.1 /Symfony CLi /PhpMyadmin /Symfony 6.4.* )
 
 Ce guide vous explique comment configurer Docker pour un projet Symfony en utilisant Docker Compose.
 
