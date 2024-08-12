@@ -45,3 +45,67 @@ Lorsque Docker Desktop demande l'accès à des chemins de dossier, acceptez les 
 ```
 
  ### 6. Accédez au conteneur Symfony
+Pour entrer dans le conteneur Symfony, utilisez la commande suivante :
+ ```bash
+docker exec -it docker_www bash
+```
+### 7. Configurez Git
+Configurez Git avec vos informations personnelles pour une utilisation dans le conteneur Symfony :
+ ```bash
+git config --global user.name "Your Name"
+git config --global user.email your_email@example.com
+```
+### 8. Créez un nouveau projet Symfony
+Pour créer un projet Web Symfony, utilisez la commande suivante :
+ ```bash
+symfony new myproject --version="6.4.*" --webapp
+```
+Pour créer un projet API Symfony, utilisez :
+ ```bash
+symfony new myproject --version="6.4.*"
+ ```
+Si vous souhaitez changer le nom du projet, modifiez également le fichier vhosts/default.conf à /var/www/nouveaunom/public.
+### 9. Vérifiez la création du projet Symfony
+Lancez le serveur Symfony pour vérifier que le projet fonctionne correctement :
+ ```bash
+symfony serve -d
+ ```
+### 10. Configurez la connexion à la base de données
+Modifiez le fichier .env pour définir les informations de connexion à la base de données :
+ ```bash
+DATABASE_URL="mysql://symfony:symfony@db:3306/abdelhakmireda"
+ ```
+Pour créer la base de données, accédez au conteneur Symfony et exécutez :
+ ```bash
+cd myproject
+bin/console doctrine:database:create
+ ```
+Si une erreur comme SQLSTATE[HY000]: General error: 1007 Can't create database 'abdelhakmireda'; database exists apparaît, cela signifie que la connexion à la base de données est correcte.
+### 11. Testez la création des entités
+Testez la création d'une entité et exécutez les migrations avec les commandes suivantes :
+ ```bash
+php bin/console make:entity test
+php bin/console make:migration
+php bin/console doctrine:migrations:migrate
+ ```
+#Résolution de problèmes:
+Si vous rencontrez l'erreur SQLSTATE[42000]: Syntax error or access violation: 1044 Access denied for user 'symfony'@'%' to database 'newnamedb', suivez ces étapes :
+## Vérifiez les permissions de l'utilisateur MySQL
+Connectez-vous au conteneur MySQL :
+```bash
+docker exec -it docker_mysql mysql -u root -p
+```
+Vérifiez les bases de données existantes :
+```bash
+SHOW DATABASES;
+```
+Vérifiez les privilèges de l'utilisateur symfony :
+```bash
+SHOW GRANTS FOR 'symfony'@'%';
+```
+Accordez les privilèges nécessaires si ce n'est pas déjà fait :
+```bash
+GRANT ALL PRIVILEGES ON *.* TO 'symfony'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+```
+# Bravo, vous avez maintenant configuré votre environnement Docker pour Symfony ! 🥳🫡​🥳​🫡​
