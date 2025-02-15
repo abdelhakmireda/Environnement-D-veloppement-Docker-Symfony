@@ -89,7 +89,7 @@ php bin/console make:entity test
 php bin/console make:migration
 php bin/console doctrine:migrations:migrate
  ```
-#Résolution de problèmes:
+# Résolution de problèmes:
 Si vous rencontrez l'erreur SQLSTATE[42000]: Syntax error or access violation: 1044 Access denied for user 'symfony'@'%' to database 'newnamedb', suivez ces étapes :
 ## Vérifiez les permissions de l'utilisateur MySQL
 Connectez-vous au conteneur MySQL :
