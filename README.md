@@ -114,10 +114,18 @@
 Si vous rencontrez l'erreur `SQLSTATE[42000]: Syntax error or access violation: 1044 Access denied for user 'symfony'@'%' to database 'newnamedb'`, suivez ces étapes :
 
 1. **Vérifiez les permissions de l'utilisateur MySQL**  
-   Connectez-vous au conteneur MySQL :  
+   Voici la commande mise à jour avec l'ajout du mot de passe `symfony` :  
+   
    ```bash
    docker exec -it docker_mysql mysql -u root -p
-   ```  
+   ```
+   
+   Lorsque MySQL demande le mot de passe, il faut entrer :  
+   ```
+   symfony
+   ```
+   
+   > 🔹 **Remarque** : Le mot de passe ne sera pas affiché lors de la saisie, c'est un comportement normal pour des raisons de sécurité. 
    Vérifiez les bases de données existantes :  
    ```bash
    SHOW DATABASES;
