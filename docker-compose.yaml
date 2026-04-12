@@ -1,22 +1,20 @@
 version: "3.8"
 
 services:
-  # Conteneur MySQL
   db:
     image: mysql:8.0
     container_name: docker_mysql
     restart: always
-    volumes: 
+    volumes:
       - db-data:/var/lib/mysql
-    environment: 
+    environment:
       MYSQL_ROOT_PASSWORD: symfony
       MYSQL_DATABASE: abdelhakmireda
       MYSQL_USER: symfony
       MYSQL_PASSWORD: symfony
-    networks: 
+    networks:
       - dev
 
-  # Conteneur phpMyAdmin
   phpmyadmin:
     depends_on:
       - db
@@ -30,21 +28,25 @@ services:
     networks:
       - dev
 
-  # Conteneur Apache + PHP 8.1
   www:
     build: ./php
     container_name: docker_www
+    restart: always
     ports:
       - "8082:80"
-    volumes: 
+    volumes:
       - ./php/vhosts:/etc/apache2/sites-enabled
       - ./:/var/www
-    restart: always
-    networks: 
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    depends_on:
+      - db
+    networks:
       - dev
 
-networks: 
+networks:
   dev:
 
-volumes: 
+volumes:
   db-data:
